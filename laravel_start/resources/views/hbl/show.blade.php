@@ -12,6 +12,13 @@
             crossorigin="anonymous">
 
         <title>상세보기 페이지</title>
+
+        <style>
+            body {
+                padding: 3%;
+            }
+        </style>
+
     </head>
     <body>
         <form action="">
