@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,35 +11,21 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous">
 
-        <title>글쓰기 페이지</title>
-
-        <style>
-            body {
-                padding: 3%;
-            }
-        </style>
+        <title>상세보기 페이지</title>
     </head>
     <body>
-
         <form action="">
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">글 제목</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="글의 제목을 입력 하세요">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">글의 내용</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
 
-            <!-- 파일 선택 -->
+            <!-- 파일이 있을경우 보여주기 -->
             <div class="mb-3">
-                <label for="formFile" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="formFile">
+                <label for="formFile" class="form-label">이미지 파일</label>
             </div>
 
         </form>
