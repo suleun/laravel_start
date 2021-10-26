@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,16 +25,16 @@ Route::get('/dashboard', function () {
 
 Route::get('/post', function () {
     return view('hbl/post');
-});
+})->name('hbl.post');
 
 
 Route::get('/show', function () {
     return view('hbl/show');
-});
+})->name('hbl.show');
 
 
-Route::get('/list', function () {
-    return view('hbl/list');
-});
+
+Route::get('/list', [PostsController::class, "index"])->middleware('auth')->name('post.list');
+
 
 require __DIR__.'/auth.php';

@@ -15,6 +15,20 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('post.list')" :active="request()->routeIs('post.list')">
+                        {{ __('list') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('hbl.post')" :active="request()->routeIs('hbl.post')">
+                        {{ __('post') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('hbl.show')" :active="request()->routeIs('hbl.show')">
+                        {{ __('show') }}
+                    </x-nav-link>
+                    
+
                 </div>
             </div>
 
@@ -66,6 +80,19 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('post.list')" :active="request()->routeIs('post.list')">
+                {{ __('list') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('hbl.show')" :active="request()->routeIs('hbl.show')">
+                {{ __('show') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('hbl.post')" :active="request()->routeIs('hbl.post')">
+                {{ __('post') }}
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
