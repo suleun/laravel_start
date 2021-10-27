@@ -16,7 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(10);
 
         // dd($posts);
 
@@ -133,8 +133,17 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        
+             // 게시글에 딸린 이미지가 있으면 파일시스템에서도 삭제해줘야 한다.
+        if($post->image) {
+            Storage::delete('public/images/'.$post->image);
+        }
+    
+            $post->delete();
+    
+            return redirect()->route('post.list');
     }
 }

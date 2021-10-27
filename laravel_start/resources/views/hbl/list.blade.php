@@ -22,6 +22,7 @@
     @endforeach
 
 </div>
-    
+
+{{ $posts->links() }}
     
 </x-app-layout>
