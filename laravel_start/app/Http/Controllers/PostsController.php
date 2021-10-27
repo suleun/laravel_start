@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -28,7 +30,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('hbl.post');
     }
 
     /**
@@ -39,7 +41,28 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        
+        $fileName = NULL;
+
+        if($request->hasFile('image')) {
+            // dd($request->file('image'));
+            $fileName = time().'_'.
+                $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')
+                ->storeAs('/public/images', $fileName);
+            // dd($path);
+        }
+
+
+        Post::create([
+            'title'=>$request->title,
+            'content'=>$request->content,
+            'user_id'=>auth()->user()->id,
+            'image'=>$fileName,
+        ]);
+
+        return redirect()->route('post.list');
     }
 
     /**
@@ -50,7 +73,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('hbl.show', ['post'=>$post]);
+    
     }
 
     /**
@@ -61,7 +87,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('hbl.edit', ['post'=>$post]);
     }
 
     /**
@@ -73,7 +101,30 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+    
+        if($request->hasFile('image')){
+
+            if($post->image){
+                Storage::delete("/public/images".$post->image);
+            }
+
+            $fileName = time().'_'.
+                $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')
+                ->storeAs('/public/images', $fileName);
+
+            $post->image = $fileName;
+
+
+        }
+
+        $post->title = $request->title;
+        $post->content = $request->content;        
+
+        $post->save();
+
+       return redirect()->route('post.list');
     }
 
     /**

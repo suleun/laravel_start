@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostsController;
+use App\Models\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,18 +25,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/post', function () {
-    return view('hbl/post');
-})->name('hbl.post');
+Route::get('/post/list', [PostsController::class, "index"])->middleware('auth')->name('post.list');
 
-
-Route::get('/show', function () {
-    return view('hbl/show');
-})->name('hbl.show');
+Route::get('/post/show/{id}', [PostsController::class, "show"])->middleware('auth')->name('post.show');
 
 
 
-Route::get('/list', [PostsController::class, "index"])->middleware('auth')->name('post.list');
+Route::get('/post', [PostsController::class,"create"])->middleware('auth')->name('post.create');
+
+Route::post('/post/store', [PostsController::class,"store"])->middleware('auth')->name('post.store');
+
+
+Route::get('/post/edit/{id}', [PostsController::class,"edit"])->middleware('auth')->name('post.edit');
+
+Route::patch('/post/update/{id}', [PostsController::class,"update"])->middleware('auth')->name('post.update');
 
 
 require __DIR__.'/auth.php';

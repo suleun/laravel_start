@@ -20,13 +20,10 @@
                         {{ __('list') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('hbl.post')" :active="request()->routeIs('hbl.post')">
+                    <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                         {{ __('post') }}
                     </x-nav-link>
-                    
-                    <x-nav-link :href="route('hbl.show')" :active="request()->routeIs('hbl.show')">
-                        {{ __('show') }}
-                    </x-nav-link>
+
                     
 
                 </div>
@@ -85,11 +82,7 @@
                 {{ __('list') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('hbl.show')" :active="request()->routeIs('hbl.show')">
-                {{ __('show') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('hbl.post')" :active="request()->routeIs('hbl.post')">
+            <x-responsive-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                 {{ __('post') }}
             </x-responsive-nav-link>
 
